@@ -17,4 +17,14 @@ class CartModel extends ChangeNotifier {
       notifyListeners(); // Notifie les écouteurs après la suppression d'un élément par son indice
     }
   }
+
+  double getTotal() {
+    double total = 0;
+
+    for (var item in _items) {
+      total += item.price;
+    }
+
+    return total;
+  }
 }
