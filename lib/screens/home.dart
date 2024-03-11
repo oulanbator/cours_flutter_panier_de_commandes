@@ -1,4 +1,5 @@
 import 'package:cours_flutter_panier_de_commandes/model/product.dart';
+import 'package:cours_flutter_panier_de_commandes/screens/cart_page.dart';
 import 'package:cours_flutter_panier_de_commandes/widgets/product_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -24,14 +25,25 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("Produits"),
-        ),
-        body: ListView.builder(
-          itemCount: products.length,
-          itemBuilder: (context, index) =>
-              ProductTile(product: products[index]),
-        ));
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text("Produits"),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CartPage(),
+              ),
+            ),
+            icon: const Icon(Icons.shopping_cart),
+          )
+        ],
+      ),
+      body: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (context, index) => ProductTile(product: products[index]),
+      ),
+    );
   }
 }
