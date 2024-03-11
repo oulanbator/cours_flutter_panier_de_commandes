@@ -1,6 +1,5 @@
 import 'package:cours_flutter_panier_de_commandes/model/cart_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
