@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:panier_de_commandes/screens/home.dart';
+import 'package:cours_flutter_panier_de_commandes/screens/home.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
