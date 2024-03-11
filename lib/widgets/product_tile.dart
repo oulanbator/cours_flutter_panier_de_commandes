@@ -1,5 +1,8 @@
+import 'package:cours_flutter_panier_de_commandes/model/cart_item.dart';
+import 'package:cours_flutter_panier_de_commandes/model/cart_model.dart';
 import 'package:cours_flutter_panier_de_commandes/model/product.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductTile extends StatefulWidget {
   final Product product;
@@ -20,9 +23,22 @@ class _ProductTileState extends State<ProductTile> {
   }
 
   _handleAddToCart() {
-    setState(() {
-      quantity = 0;
-    });
+    if (quantity > 0) {
+      // Crée un CartItem
+      var item = CartItem(
+        product: widget.product,
+        quantity: quantity,
+        price: widget.product.price * quantity,
+      );
+      // Ajoute l'item au panier
+      // On n'a pas besoin d'être notifié si le panier change, on utilise donc Provider.of pour récupérer une référence à notre CartModel
+      var cartModel = Provider.of<CartModel>(context, listen: false);
+      cartModel.addItem(item);
+      // Remet le compteur à 0
+      setState(() {
+        quantity = 0;
+      });
+    }
   }
 
   @override
