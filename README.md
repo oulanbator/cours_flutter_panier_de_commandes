@@ -5,6 +5,14 @@ Un TP pour voir différents concepts clés dans Flutter :
 - L'implémentation de la librairie Provider au sein du projet
 - La gestion du state à travers plusieurs écrans
 
+
+
+## Copier le projet
+```
+git clone https://github.com/oulanbator/cours_flutter_panier_de_commandes.git
+cd ./cours_flutter_panier_de_commandes
+```
+
 Les répertoires spécifiques aux plateformes ont été supprimés pour garder le repo clean.
 Vous pouvez le retrouver avec l'une des commandes suivantes dans le répertoire du projet :
 > flutter create --platforms=windows .
@@ -18,14 +26,27 @@ Vous pouvez le retrouver avec l'une des commandes suivantes dans le répertoire 
 Ou plusieurs plateformes simultanément :
 > flutter create --platforms=windows,android .
 
-## Copier le projet
-```
-git clone https://github.com/oulanbator/cours_flutter_panier_de_commandes.git
-cd ./cours_flutter_panier_de_commandes
-flutter create --platforms=windows .
-```
 
-## Exercice 1 - Afficher la liste de produits
+## Exercice 1 - Navigation Stateful
+- Mise en place de la navigation avec un BottomNavigationBar, au sein d'un widget StateFul.
+
+L'idée ici est de comprendre et implémenter un widget Stateful. En l'occurence, nous allons mettre en place un mécanisme de navigation entre plusieurs pages sans utiliser Navigator (ce n'est pas nécessairement la meilleure appriche pour la navigation au sein d'une application plus complexe).
+
+Notez l'utilisation d'un thème "dark" dans le Widget App.
+
+Notez également que les widget HomePage et CartPage n'implémentent pas de Scaffold. Dans ce contexte, c'est le widget App qui construit l'écran et "remplace" le contenu de la propriété "body" en fontion de l'intéraction de l'utilisateur avec la NavBar.
+
+#### App démo : 
+> https://github.com/oulanbator/cours_flutter_stateful_bottomnavbar
+
+
+Modifiez le widget App afin d'intégrer une BottomNavigationBar qui permette de naviguer entre les deux écrans HomePage et CartPage.
+- Transformez App en widget Stateful
+- Créez les propriétés _indexActuel et _pages pour permettre le fonctionnement de la navigation.
+- Ajoutez une BottomNavigationBar à votre App en vous inspirant de l'application démo.
+
+
+## Exercice 2 - Afficher la liste de produits
 - Créer une classe Product avec deux propriétés : name (String) et price (double)
 - Créer une liste de Products "en dur" dans votre Widget Home
 
@@ -47,17 +68,11 @@ List<Product> products = [
   ];
 ```
 
-- Implémenter un ListView dans le widget Home.
+- Implémenter un ListView dans le widget HomePage.
 - Plutôt que de générer des ListTile directement, le ListView va générer des ProductTile (que vous devez implémenter)
 - ProductTile doit être stateful pour pouvoir suivre le state du compteur affiché sur la tuile
 - Utiliser un IconButton pour le **leading** du ListTile
 - Utiliser un SizedBox (width: 100) pour le **trailing** du ListTile. Vous pouvez alors encapsuler un Row à l'intérieur pour afficher le compteur et le bouton "Panier" côte à côte, sans avoir d'erreur de layout.
-
-## Exercice 2 - Ecran Panier (CartPage)
-
-- Créer un Widget CartPage. Pour le momen il ne contient qu'un Scaffold avec un Container
-- Dans l'AppBar de la page Home, ajouter un IconButton pour le panier grâce à la propriété **actions**
-- Mettre en place la navigation vers le widget CartPage
 
 ## Exercice 3 - Mettre en place le state management
 
